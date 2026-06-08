@@ -8,7 +8,7 @@ TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN", "").strip()
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "").strip()
 GROQ_API_KEY = GROQ_API_KEY.encode("ascii", errors="ignore").decode("ascii")
 GROQ_MODEL = "llama-3.3-70b-versatile"
-SYSTEM_PROMPT = """You are a friendly and smart assistant. Always reply in Persian (Farsi). Keep answers very short and friendly."""
+SYSTEM_PROMPT = "You are a friendly and smart assistant. Always reply in Persian (Farsi). Keep answers very short and friendly."
 
 logging.basicConfig(level=logging.INFO)
 
@@ -53,8 +53,8 @@ else:
                 reply = get_reply(message.from_user.id, text)
                 await message.reply_text(reply)
 except Exception as e:
-        logging.error(f"Error handling message: {e}")
-        await message.reply_text("متاسفم، مشکلی پیش آمد. لطفا دوباره امتحان کن.")
+        logging.error(f"Error: {e}")
+        await message.reply_text("متاسفم، مشکلی پیش آمد.")
 
 def main():
         app = Application.builder().token(TELEGRAM_TOKEN).build()
